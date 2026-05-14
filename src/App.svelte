@@ -1,6 +1,5 @@
 <script>
     // @ts-nocheck
-    import svelteLogo from './assets/svelte.svg'
 
     let mode = $state(0);
     const units = [{ val: 'un', lbl: 'Unidade' }, { val: 'm2', lbl: 'M²' }, { val: 'cm2', lbl: 'CM²' }, { val: 'in2', lbl: 'IN²' }];
