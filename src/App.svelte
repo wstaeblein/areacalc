@@ -6,7 +6,7 @@
     const units = [{ val: 'un', lbl: 'Unidade' }, { val: 'm2', lbl: 'M²' }, { val: 'cm2', lbl: 'CM²' }, { val: 'in2', lbl: 'IN²' }];
     const units2 = units.slice(1);
     const straightUnits = [{ val: 'm', lbl: 'M' }, { val: 'cm', lbl: 'CM' }, { val: 'in', lbl: 'IN' }];
-    const shapes = [{ val: 'rect', lbl: 'Retângular' }, { val: 'circ', lbl: 'Circular' }, { val: 'tria', lbl: 'Triangular' }, { val: 'hexa', lbl: 'Hexagonal' }, { val: 'arc', lbl: 'Em Arco' }]
+    const shapes = [{ val: 'rect', lbl: 'Retângular' }, { val: 'circ', lbl: 'Circular' }, { val: 'tria', lbl: 'Triangular' }, { val: 'hexa', lbl: 'Hexagonal' }, { val: 'trap', lbl: 'Trapezoidal' }, { val: 'arc', lbl: 'Em Arco' }]
 
     let mainUnit = $state({ val: 'm2', lbl: 'M²' });
 
@@ -103,6 +103,7 @@
             case 'rect': return d1 * d2;
             case 'circ': return Math.PI * d1 * (d2 || d1);
             case 'hexa': return (3 * Math.sqrt(3) * Math.pow(d1, 2)) / 2;
+            case 'trap': return 0.5 * (d1 + d2) * d3;
             case 'arc': return (d1 / 360) * Math.PI * Math.pow(d2, 2);
             case 'tria': 
                 let s = (d1 + d2 + d3) / 2;
@@ -224,6 +225,10 @@
                                         <input type="number" bind:value={area.dim1} placeholder="Lado 1" step="0.01" min="0" />
                                         <input type="number" bind:value={area.dim2} placeholder="Lado 2" step="0.01" min="0" />
                                         <input type="number" bind:value={area.dim3} placeholder="Lado 3" step="0.01" min="0" />
+                                    {:else if area.shape === 'trap'}
+                                        <input type="number" bind:value={area.dim1} placeholder="Base 1" step="0.01" min="0" />
+                                        <input type="number" bind:value={area.dim2} placeholder="Base 2" step="0.01" min="0" />
+                                        <input type="number" bind:value={area.dim3} placeholder="Altura" step="0.01" min="0" />                                        
                                     {:else if area.shape === 'hexa'}
                                         <input type="number" bind:value={area.dim1} placeholder="Lado" step="0.01" min="0" />                                      
                                     {/if}
